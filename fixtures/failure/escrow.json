@@ -1,0 +1,7 @@
+{
+    "Account": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
+    "Destination": "rPT1Sjq2YGrBMTttX4GZHjKu9dyfzbpAYe",
+    "Amount": "100000000",
+    "LedgerEntryType": "Escrow",
+    "Data": { "approved": "0" }
+}

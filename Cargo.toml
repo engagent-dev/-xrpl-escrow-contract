@@ -1,0 +1,31 @@
+[package]
+name = "multi-condition-escrow"
+version = "0.1.0"
+edition = "2021"
+
+# ═══════════════════════════════════════════════════════════════
+# crate-type = ["cdylib"] → produces a C-compatible dynamic library
+# which compiles to .wasm when targeting wasm32-unknown-unknown.
+# Without this, Rust produces a normal binary the XRPL can't run.
+# ═══════════════════════════════════════════════════════════════
+[lib]
+crate-type = ["cdylib"]
+path = "src/lib.rs"
+
+# ═══════════════════════════════════════════════════════════════
+# Ripple's official WASM stdlib for XRPL smart contracts.
+# Only compiled when targeting WASM (not during cargo test).
+# ═══════════════════════════════════════════════════════════════
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+xrpl-wasm-stdlib = "0.7"
+
+# ═══════════════════════════════════════════════════════════════
+# Release profile: optimize for smallest possible binary.
+# On-chain WASM has size limits, so every byte matters.
+# ═══════════════════════════════════════════════════════════════
+[profile.release]
+opt-level = 'z'       # Optimize for size, not speed
+lto = true            # Link-Time Optimization across crates
+codegen-units = 1     # Single codegen unit for max optimization
+strip = true          # Remove debug symbols
+panic = "abort"       # Don't include stack unwinding code (~10KB saved)

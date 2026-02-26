@@ -1,0 +1,7 @@
+{
+    "TransactionType": "EscrowFinish",
+    "Account": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
+    "Owner": "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh",
+    "OfferSequence": 1,
+    "ledger_index": 1500
+}
